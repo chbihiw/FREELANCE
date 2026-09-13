@@ -25,8 +25,7 @@
       },
       hero: {
         eyebrow: "Un collectif de freelances marketing & digital",
-        title: 'Le savoir-faire d\'une agence, <span class="grad-text">l\'agilité d\'une bande de potes</span>.',
-        subtitle: "On est plusieurs experts indépendants qui bossent ensemble sur les mêmes projets : paid media, SEO, dev web, production, copywriting... Le travail d'une agence multinationale, au prix d'un freelance.",
+        title: 'On connaît les coulisses des grandes agences. <span class="grad-text">On a gardé ce qui compte.</span>',
         cta_primary: "Parler à l'équipe",
         cta_secondary: "Voir nos expertises",
         badge1: "Des campagnes lancées partout dans le monde",
@@ -38,6 +37,17 @@
       },
       platforms: {
         label: "Plateformes & outils qu'on utilise au quotidien"
+      },
+      stats: {
+        eyebrow: "En chiffres",
+        items: [
+          { label: "ans d'expérience cumulée" },
+          { label: "de budget publicitaire géré" },
+          { label: "marques multinationales accompagnées" },
+          { label: "pays couverts" },
+          { label: "plateformes maîtrisées" },
+          { label: "freelances dans le collectif" }
+        ]
       },
       teams: {
         eyebrow: "Comment on est organisés",
@@ -118,8 +128,7 @@
       },
       hero: {
         eyebrow: "A collective of freelance marketing & digital experts",
-        title: 'Agency-level work, <span class="grad-text">a crew of friends\' agility</span>.',
-        subtitle: "We're several independent experts working together on the same projects: paid media, SEO, web dev, production, copywriting... The work of a multinational agency, at a freelancer's price.",
+        title: 'We know the inside of big agencies. <span class="grad-text">We kept what actually matters.</span>',
         cta_primary: "Talk to the team",
         cta_secondary: "See our expertise",
         badge1: "Campaigns launched all over the world",
@@ -131,6 +140,17 @@
       },
       platforms: {
         label: "Platforms & tools we use daily"
+      },
+      stats: {
+        eyebrow: "By the numbers",
+        items: [
+          { label: "years of combined experience" },
+          { label: "in ad budget managed" },
+          { label: "multinational brands supported" },
+          { label: "countries covered" },
+          { label: "platforms mastered" },
+          { label: "freelancers in the collective" }
+        ]
       },
       teams: {
         eyebrow: "How we're organized",
@@ -376,6 +396,115 @@
   }
 
   /* ==========================================================
+     Hero visual — subtle animated dot/network graphic
+     representing the collective's areas of expertise
+  ========================================================== */
+  function initHeroNetwork() {
+    var canvas = document.getElementById("heroNetwork");
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext("2d");
+    var container = canvas.parentElement;
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var colors = ["#22d3ee", "#3b82f6", "#6c7bc9", "#3fa7a0", "#4e9b6b", "#4a85c4", "#7c6fc4", "#4fa8b8"];
+    var NODE_COUNT = 22;
+    var width = 0, height = 0, linkDist = 90;
+    var nodes = [];
+    var rafId = null;
+
+    function resize() {
+      var rect = container.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      linkDist = Math.max(60, Math.min(width, height) * 0.34);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function makeNodes() {
+      nodes = [];
+      for (var i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.16,
+          vy: (Math.random() - 0.5) * 0.16,
+          r: 1.6 + Math.random() * 1.7,
+          color: colors[i % colors.length]
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var a = nodes[i], b = nodes[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < linkDist) {
+            var alpha = (1 - dist / linkDist) * 0.32;
+            ctx.strokeStyle = "rgba(150, 210, 255," + alpha.toFixed(3) + ")";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach(function (n) {
+        ctx.beginPath();
+        ctx.fillStyle = n.color;
+        ctx.shadowColor = n.color;
+        ctx.shadowBlur = 6;
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.shadowBlur = 0;
+    }
+
+    function step() {
+      nodes.forEach(function (n) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > width) n.vx *= -1;
+        if (n.y < 0 || n.y > height) n.vy *= -1;
+        n.x = Math.max(0, Math.min(width, n.x));
+        n.y = Math.max(0, Math.min(height, n.y));
+      });
+      draw();
+      rafId = requestAnimationFrame(step);
+    }
+
+    resize();
+    makeNodes();
+    draw();
+
+    if (!reduceMotion) {
+      rafId = requestAnimationFrame(step);
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          if (rafId) cancelAnimationFrame(rafId);
+        } else {
+          rafId = requestAnimationFrame(step);
+        }
+      });
+    }
+
+    window.addEventListener("resize", function () {
+      resize();
+      draw();
+    });
+  }
+
+  /* ==========================================================
      Footer year
   ========================================================== */
   var yearEl = document.getElementById("year");
@@ -386,4 +515,5 @@
   ========================================================== */
   applyLanguage(currentLang);
   setFormStatus("idle");
+  initHeroNetwork();
 })();

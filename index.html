@@ -58,8 +58,7 @@
     <div class="container hero-inner">
       <div class="hero-content">
         <p class="eyebrow" data-i18n="hero.eyebrow">Un collectif de freelances marketing &amp; digital</p>
-        <h1 data-i18n-html="hero.title">Le savoir-faire d'une agence, <span class="grad-text">l'agilité d'une bande de potes</span>.</h1>
-        <p class="hero-subtitle" data-i18n="hero.subtitle">On est plusieurs experts indépendants qui bossent ensemble sur les mêmes projets : paid media, SEO, dev web, production, copywriting... Le travail d'une agence multinationale, au prix d'un freelance.</p>
+        <h1 data-i18n-html="hero.title">On connaît les coulisses des grandes agences. <span class="grad-text">On a gardé ce qui compte.</span></h1>
 
         <div class="hero-cta">
           <a href="#contact" class="btn btn-primary" data-i18n="hero.cta_primary">Parler à l'équipe</a>
@@ -86,13 +85,48 @@
           <div class="mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="3.2"/></svg></div>
           <div class="mini-label" data-i18n="hero.card3">Prod photo/vidéo</div>
         </div>
-        <div class="hero-orb"></div>
+        <div class="hero-orb">
+          <canvas id="heroNetwork" class="hero-network"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats theme-light">
+    <div class="container">
+      <p class="eyebrow center" data-i18n="stats.eyebrow">En chiffres</p>
+      <div class="stats-grid">
+        <div class="stat-tile" style="--dep: var(--dep-web)">
+          <div class="stat-value">20+</div>
+          <div class="stat-label" data-i18n="stats.items.0.label">ans d'expérience cumulée</div>
+        </div>
+        <div class="stat-tile" style="--dep: var(--dep-paid)">
+          <div class="stat-value">20M$+</div>
+          <div class="stat-label" data-i18n="stats.items.1.label">de budget publicitaire géré</div>
+        </div>
+        <div class="stat-tile" style="--dep: var(--dep-seo)">
+          <div class="stat-value">30+</div>
+          <div class="stat-label" data-i18n="stats.items.2.label">marques multinationales accompagnées</div>
+        </div>
+        <div class="stat-tile" style="--dep: var(--dep-audit)">
+          <div class="stat-value">15+</div>
+          <div class="stat-label" data-i18n="stats.items.3.label">pays couverts</div>
+        </div>
+        <div class="stat-tile" style="--dep: var(--dep-prod)">
+          <div class="stat-value">12+</div>
+          <div class="stat-label" data-i18n="stats.items.4.label">plateformes maîtrisées</div>
+        </div>
+        <div class="stat-tile" style="--dep: var(--dep-copy)">
+          <div class="stat-value">32+</div>
+          <div class="stat-label" data-i18n="stats.items.5.label">freelances dans le collectif</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- LOGOS / PLATFORMS -->
-  <section class="platforms theme-light">
+  <section class="platforms theme-dark">
     <div class="container">
       <p class="platforms-label" data-i18n="platforms.label">Plateformes &amp; outils qu'on utilise au quotidien</p>
       <div class="platforms-row">
