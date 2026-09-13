@@ -2,198 +2,202 @@
   "use strict";
 
   /* ==========================================================
+     Web3Forms — envoi direct du formulaire par email, sans
+     ouvrir la messagerie du visiteur.
+     1) Va sur https://web3forms.com, entre l'email qui doit
+        recevoir les messages (aminechbihi6@gmail.com), valide
+        le mail de confirmation.
+     2) Copie la clé ("Access Key") reçue et colle-la ci-dessous.
+  ========================================================== */
+  var WEB3FORMS_ACCESS_KEY = "667c6e1c-becd-49b0-8200-70090f2405a6";
+
+  /* ==========================================================
      Bilingual content dictionary (FR / EN)
      Keys mirror the data-i18n / data-i18n-html paths in index.html
   ========================================================== */
   var content = {
     fr: {
       nav: {
-        services: "Services",
-        about: "Approche",
+        teams: "Équipes",
+        about: "Pourquoi nous",
         contact: "Contact",
         cta: "Discutons"
       },
       hero: {
-        eyebrow: "Consultant freelance — Marketing & Digital",
-        title: 'Je transforme vos budgets média en croissance <span class="grad-text">mesurable</span>.',
-        subtitle: "Paid Media, SEO, développement web & app, production vidéo/photo et stratégie marketing — un seul interlocuteur, une exécution data-driven, disponible en asynchrone selon votre fuseau.",
-        cta_primary: "Réserver un appel",
-        cta_secondary: "Voir les services",
-        badge1: "Campagnes gérées sur le marché US",
-        badge2: "Meta · Google · TikTok · Search",
-        badge3: "Disponible en asynchrone, hors horaires agence",
-        card1: "ROI & performance",
-        card2: "Web & App",
-        card3: "Vidéo & Photo"
+        eyebrow: "Un collectif de freelances marketing & digital",
+        title: 'Le savoir-faire d\'une agence, <span class="grad-text">l\'agilité d\'une bande de potes</span>.',
+        subtitle: "On est plusieurs experts indépendants qui bossent ensemble sur les mêmes projets : paid media, SEO, dev web, production, copywriting... Le travail d'une agence multinationale, au prix d'un freelance.",
+        cta_primary: "Parler à l'équipe",
+        cta_secondary: "Voir nos expertises",
+        badge1: "Des campagnes lancées partout dans le monde",
+        badge2: "6+ expertises sous un même toit",
+        badge3: "Un collectif, pas un intermédiaire de plus",
+        card1: "ROI & data",
+        card2: "Créa & dev",
+        card3: "Prod photo/vidéo"
       },
       platforms: {
-        label: "Plateformes & outils au quotidien"
+        label: "Plateformes & outils qu'on utilise au quotidien"
       },
-      services: {
-        eyebrow: "Ce que je fais",
-        title: "Des services pensés pour la performance, de bout en bout",
-        subtitle: "Un profil hybride — opérationnel, analytique, commercial — pour couvrir vos besoins sans multiplier les intervenants.",
+      teams: {
+        eyebrow: "Comment on est organisés",
+        title: "Une seule équipe, plusieurs expertises",
+        subtitle: "Chaque projet est pris en charge par les bonnes personnes, coordonnées par un seul interlocuteur — tu n'as jamais à gérer plusieurs prestataires.",
         items: [
-          {
-            title: "Paid Media & Growth",
-            desc: "Meta, Google, TikTok Ads : structuration de compte, ciblage, création, optimisation continue et reporting orienté résultats — pas juste des métriques.",
-            tags: ["Media buying", "A/B testing", "Reporting & analytics"]
-          },
-          {
-            title: "SEO",
-            desc: "Audit technique, structure de contenu et optimisation on-page pour construire une visibilité organique durable, en complément du payant.",
-            tags: ["Audit technique", "Stratégie de contenu", "Search Console"]
-          },
-          {
-            title: "Développement web & applications",
-            desc: "Sites vitrines, landing pages et appweb sur mesure — de la maquette au déploiement, pensés pour convertir vos visiteurs en clients.",
-            tags: ["Sites & landing pages", "Appweb sur mesure", "GitHub & Vercel"]
-          },
-          {
-            title: "Production vidéo & photo",
-            desc: "Shooting et montage pensés pour vos campagnes : contenus courts pour les réseaux, visuels produits, captation d'évènements.",
-            tags: ["Shooting produit", "Contenus réseaux sociaux", "Montage & retouche"]
-          },
-          {
-            title: "Stratégie marketing & consulting",
-            desc: "Diagnostic de votre présence digitale, priorisation des actions et accompagnement à l'exécution — un regard business autant qu'analytique.",
-            tags: ["Audit & roadmap", "Pilotage multi-canal", "Accompagnement continu"]
-          }
-        ]
+          { title: "Audit marketing", desc: "De la réflexion stratégique à l'exécution opérationnelle : on regarde ce qui marche, ce qui coince, et on priorise les actions qui ont vraiment un impact sur ton business." },
+          { title: "Paid Media", desc: "Meta, Google, TikTok : de la stratégie média à l'exécution technique au quotidien — ciblage, création, optimisation continue et reporting qui a du sens." },
+          { title: "SEO", desc: "De la stratégie de visibilité à l'exécution technique : audit, structure de contenu, on-page — pour exister sur Google sans dépendre à 100% du payant." },
+          { title: "Création de sites & applications", desc: "Sites vitrines, e-commerce, appweb sur mesure — de la maquette au déploiement." },
+          { title: "Production photo, vidéo & 3D", desc: "Shooting, montage, modélisation et texturing 3D — des contenus qui donnent envie de cliquer." },
+          { title: "Copywriting & automatisation", desc: "Des mots qui vendent et des séquences email/SMS qui tournent toutes seules." }
+        ],
+        more: "Et la liste ne s'arrête pas là : le collectif s'agrandit à chaque projet qui demande un profil différent — raconte-nous ton besoin, on te dira qui chez nous s'en occupe."
       },
       about: {
-        eyebrow: "Pourquoi travailler avec moi",
-        title: "Un profil hybride, entre exécution et vision business",
-        subtitle: "Traffic Manager en agence et consultant freelance : je connais les deux côtés du métier, celui qui exécute et celui qui doit rendre des comptes sur le ROI.",
-        panel1: "Traffic Management & Social Analytics",
-        panel2: "Approche data-driven, orientée ROI",
-        panel3: "Basé à Casablanca — clients internationaux",
-        panel4: "Livraison asynchrone, quel que soit le fuseau",
+        eyebrow: "Pourquoi The Hive",
+        title: "L'exécution d'une agence, l'esprit d'une bande de potes",
+        subtitle: "On n'est pas des inconnus assemblés pour un devis. On bosse ensemble, sur plusieurs projets à la fois, et ça se sent dans la façon dont on collabore avec toi.",
+        panel1: "Basé au Maroc — clients à l'international",
+        panel2: "Une équipe dispo en asynchrone, quel que soit ton fuseau",
+        panel3: "Un collectif, pas une agence à tiroirs",
+        panel4: "Chaque projet suivi avec des chiffres à l'appui",
         points: [
-          { title: "Data-driven", desc: "Chaque décision média s'appuie sur la donnée, pas sur l'intuition." },
-          { title: "Multi-plateforme", desc: "Meta, TikTok, Snapchat, Pinterest, Google Ads, YouTube, Display, Bing." },
-          { title: "Un seul interlocuteur", desc: "Média, site, contenu et stratégie coordonnés par une seule personne." },
-          { title: "Flexible & async", desc: "Disponible en dehors des horaires classiques, livraison asynchrone." }
+          { title: "6+ expertises", desc: "Sous un même toit, coordonnées par une seule personne." },
+          { title: "Un seul prix", desc: "Celui d'un freelance, pour un travail pensé comme en agence." },
+          { title: "Data-driven", desc: "Chaque décision s'appuie sur des chiffres, pas sur le feeling." },
+          { title: "Bon vivants, sérieux au travail", desc: "Easy going entre nous, nickel sur tes campagnes et ton reporting." }
+        ]
+      },
+      process: {
+        eyebrow: "Comment ça marche",
+        title: "Un process simple, pensé pour les non-experts",
+        subtitle: "Pas besoin de connaître le jargon marketing pour bosser avec nous.",
+        steps: [
+          { title: "On t'écoute", desc: "Un appel ou un message pour comprendre ton besoin, ton budget, tes objectifs." },
+          { title: "On assemble la bonne équipe", desc: "Selon ton projet, on mobilise les bons profils du collectif — jamais plus que nécessaire." },
+          { title: "On livre, on explique, on ajuste", desc: "Résultats et reporting expliqués simplement, sans jargon — et on optimise en continu." }
         ]
       },
       contact: {
-        eyebrow: "Prochaine étape",
-        title: "Parlons de votre projet",
-        subtitle: "Décrivez votre besoin en quelques mots — je reviens vers vous rapidement, en français ou en anglais.",
+        eyebrow: "Étape suivante",
+        title: "Raconte-nous ton projet",
+        subtitle: "Un mot sur ton besoin, et on te répond vite — en français ou en anglais.",
         whatsapp: "WhatsApp",
         form: {
           name: "Nom",
           email: "Email",
+          phone: "Téléphone (facultatif)",
           project: "Type de projet",
+          opt_audit: "Audit marketing",
           opt_ads: "Paid Media / Ads",
           opt_seo: "SEO",
           opt_web: "Site web / Appweb",
-          opt_video: "Vidéo / Photo",
-          opt_strategy: "Stratégie / Consulting",
+          opt_prod: "Photo / Vidéo / 3D",
+          opt_copy: "Copywriting / Emailing",
           opt_other: "Autre",
           message: "Message",
           submit: "Envoyer",
-          note: "Ouvre votre messagerie pré-remplie — rien n'est envoyé automatiquement depuis cette page."
+          note: "",
+          sending: "Envoi en cours...",
+          success: "Message envoyé ! On revient vers toi très vite.",
+          error: "Oups, un souci est survenu. Écris-nous directement à aminechbihi6@gmail.com ou sur WhatsApp."
         }
       },
       footer: {
-        tagline: "Amine Chbihi — Freelance Growth & Digital Consultant",
+        tagline: "The Hive — Collectif freelance Marketing & Digital",
         rights: "Tous droits réservés"
       }
     },
 
     en: {
       nav: {
-        services: "Services",
-        about: "Approach",
+        teams: "Teams",
+        about: "Why us",
         contact: "Contact",
         cta: "Let's talk"
       },
       hero: {
-        eyebrow: "Freelance Consultant — Marketing & Digital",
-        title: 'I turn media budgets into <span class="grad-text">measurable</span> growth.',
-        subtitle: "Paid Media, SEO, web & app development, video/photo production and marketing strategy — one point of contact, data-driven execution, available asynchronously across time zones.",
-        cta_primary: "Book a call",
-        cta_secondary: "See services",
-        badge1: "Campaigns run for the US market",
-        badge2: "Meta · Google · TikTok · Search",
-        badge3: "Available asynchronously, outside agency hours",
-        card1: "ROI & performance",
-        card2: "Web & App",
-        card3: "Video & Photo"
+        eyebrow: "A collective of freelance marketing & digital experts",
+        title: 'Agency-level work, <span class="grad-text">a crew of friends\' agility</span>.',
+        subtitle: "We're several independent experts working together on the same projects: paid media, SEO, web dev, production, copywriting... The work of a multinational agency, at a freelancer's price.",
+        cta_primary: "Talk to the team",
+        cta_secondary: "See our expertise",
+        badge1: "Campaigns launched all over the world",
+        badge2: "6+ areas of expertise under one roof",
+        badge3: "A collective, not another middleman",
+        card1: "ROI & data",
+        card2: "Design & dev",
+        card3: "Photo/video production"
       },
       platforms: {
-        label: "Platforms & tools I use daily"
+        label: "Platforms & tools we use daily"
       },
-      services: {
-        eyebrow: "What I do",
-        title: "End-to-end services built for performance",
-        subtitle: "A hybrid profile — operational, analytical, business-minded — to cover your needs without multiplying vendors.",
+      teams: {
+        eyebrow: "How we're organized",
+        title: "One team, several areas of expertise",
+        subtitle: "Every project is handled by the right people, coordinated by a single point of contact — you never have to juggle multiple vendors.",
         items: [
-          {
-            title: "Paid Media & Growth",
-            desc: "Meta, Google, TikTok Ads: account structuring, targeting, creative, continuous optimization and results-focused reporting — not just metrics.",
-            tags: ["Media buying", "A/B testing", "Reporting & analytics"]
-          },
-          {
-            title: "SEO",
-            desc: "Technical audit, content structure and on-page optimization to build lasting organic visibility, alongside paid media.",
-            tags: ["Technical audit", "Content strategy", "Search Console"]
-          },
-          {
-            title: "Web & app development",
-            desc: "Showcase sites, landing pages and custom web apps — from mockup to deployment, built to convert visitors into clients.",
-            tags: ["Sites & landing pages", "Custom web apps", "GitHub & Vercel"]
-          },
-          {
-            title: "Video & photo production",
-            desc: "Shooting and editing designed for your campaigns: short-form social content, product visuals, event coverage.",
-            tags: ["Product shoots", "Social content", "Editing & retouching"]
-          },
-          {
-            title: "Marketing strategy & consulting",
-            desc: "Diagnosis of your digital presence, prioritized action plan and hands-on execution support — a business lens as much as an analytical one.",
-            tags: ["Audit & roadmap", "Multi-channel management", "Ongoing support"]
-          }
-        ]
+          { title: "Marketing audit", desc: "From strategic thinking to hands-on execution: we look at what's working, what isn't, and prioritize the actions that actually move the needle for your business." },
+          { title: "Paid Media", desc: "Meta, Google, TikTok: from media strategy to day-to-day technical execution — targeting, creative, continuous optimization and reporting that actually makes sense." },
+          { title: "SEO", desc: "From visibility strategy to technical execution: audit, content structure, on-page work — so you show up on Google without depending 100% on paid." },
+          { title: "Website & app development", desc: "Showcase sites, e-commerce, custom web apps — from mockup to deployment." },
+          { title: "Photo, video & 3D production", desc: "Shooting, editing, 3D modeling and texturing — content that actually makes people click." },
+          { title: "Copywriting & automation", desc: "Words that sell, and email/SMS sequences that run themselves." }
+        ],
+        more: "And the list doesn't stop there: the collective grows with every project that calls for a different profile — tell us what you need, and we'll tell you who on our end handles it."
       },
       about: {
-        eyebrow: "Why work with me",
-        title: "A hybrid profile, between execution and business vision",
-        subtitle: "Agency Traffic Manager and freelance consultant: I know both sides of the job — the one that executes, and the one accountable for ROI.",
-        panel1: "Traffic Management & Social Analytics",
-        panel2: "Data-driven, ROI-focused approach",
-        panel3: "Based in Casablanca — international clients",
-        panel4: "Asynchronous delivery, any time zone",
+        eyebrow: "Why The Hive",
+        title: "Agency execution, a crew-of-friends mindset",
+        subtitle: "We're not strangers thrown together for a quote. We work together, on several projects at once, and it shows in how we collaborate with you.",
+        panel1: "Based in Morocco — international clients",
+        panel2: "A team available asynchronously, any time zone",
+        panel3: "A collective, not a bloated agency",
+        panel4: "Every project tracked with real numbers",
         points: [
-          { title: "Data-driven", desc: "Every media decision is backed by data, not intuition." },
-          { title: "Multi-platform", desc: "Meta, TikTok, Snapchat, Pinterest, Google Ads, YouTube, Display, Bing." },
-          { title: "One point of contact", desc: "Media, website, content and strategy coordinated by one person." },
-          { title: "Flexible & async", desc: "Available outside standard hours, asynchronous delivery." }
+          { title: "6+ areas of expertise", desc: "Under one roof, coordinated by a single person." },
+          { title: "One single price", desc: "A freelancer's price, for work built like an agency's." },
+          { title: "Data-driven", desc: "Every decision is backed by numbers, not a gut feeling." },
+          { title: "Good vibes, serious work", desc: "Easy going among us, spot-on on your campaigns and reporting." }
+        ]
+      },
+      process: {
+        eyebrow: "How it works",
+        title: "A simple process, built for non-experts",
+        subtitle: "You don't need to know marketing jargon to work with us.",
+        steps: [
+          { title: "We listen", desc: "A call or a message to understand your need, your budget, your goals." },
+          { title: "We assemble the right team", desc: "Depending on your project, we bring in the right profiles from the collective — never more than needed." },
+          { title: "We deliver, explain, and adjust", desc: "Results and reporting explained simply, no jargon — and we keep optimizing." }
         ]
       },
       contact: {
         eyebrow: "Next step",
-        title: "Let's talk about your project",
-        subtitle: "Describe what you need in a few words — I'll get back to you quickly, in French or English.",
+        title: "Tell us about your project",
+        subtitle: "A few words about what you need, and we'll get back to you fast — in French or English.",
         whatsapp: "WhatsApp",
         form: {
           name: "Name",
           email: "Email",
+          phone: "Phone (optional)",
           project: "Project type",
+          opt_audit: "Marketing audit",
           opt_ads: "Paid Media / Ads",
           opt_seo: "SEO",
           opt_web: "Website / Web app",
-          opt_video: "Video / Photo",
-          opt_strategy: "Strategy / Consulting",
+          opt_prod: "Photo / Video / 3D",
+          opt_copy: "Copywriting / Emailing",
           opt_other: "Other",
           message: "Message",
           submit: "Send",
-          note: "Opens your email client, pre-filled — nothing is sent automatically from this page."
+          note: "",
+          sending: "Sending...",
+          success: "Message sent! We'll get back to you very soon.",
+          error: "Oops, something went wrong. Email us directly at aminechbihi6@gmail.com or on WhatsApp."
         }
       },
       footer: {
-        tagline: "Amine Chbihi — Freelance Growth & Digital Consultant",
+        tagline: "The Hive — Freelance Marketing & Digital Collective",
         rights: "All rights reserved"
       }
     }
@@ -212,13 +216,24 @@
     return cur;
   }
 
-  var STORAGE_KEY = "ac_site_lang";
+  var STORAGE_KEY = "hive_site_lang";
   var currentLang = "fr";
   try {
     var saved = window.localStorage.getItem(STORAGE_KEY);
     if (saved === "fr" || saved === "en") currentLang = saved;
   } catch (e) {
     /* localStorage unavailable (private mode, etc.) — default to fr */
+  }
+
+  var formStatusEl = document.getElementById("formStatus");
+
+  function setFormStatus(state) {
+    if (!formStatusEl) return;
+    formStatusEl.setAttribute("data-state", state);
+    var dict = content[currentLang] || content.fr;
+    var key = state === "idle" ? "note" : state;
+    var text = getPath(dict, "contact.form." + key);
+    if (typeof text === "string") formStatusEl.textContent = text;
   }
 
   function applyLanguage(lang) {
@@ -248,6 +263,10 @@
 
     currentLang = lang;
     try { window.localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignore */ }
+
+    // re-sync the contact form status message in the new language
+    var currentState = formStatusEl ? formStatusEl.getAttribute("data-state") || "idle" : "idle";
+    setFormStatus(currentState);
   }
 
   /* ==========================================================
@@ -257,6 +276,19 @@
   if (langToggle) {
     langToggle.addEventListener("click", function () {
       applyLanguage(currentLang === "fr" ? "en" : "fr");
+    });
+  }
+
+  /* ==========================================================
+     Logo -> smooth scroll to top
+     (native #anchor scrolling can silently no-op on a sticky
+     header, so we handle it manually)
+  ========================================================== */
+  var logoHome = document.getElementById("logoHome");
+  if (logoHome) {
+    logoHome.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
@@ -279,32 +311,67 @@
   }
 
   /* ==========================================================
-     Contact form -> mailto (no backend required)
+     Contact form -> sent directly by email via Web3Forms
+     (no mailto:, nothing opens on the visitor's side)
   ========================================================== */
   var form = document.getElementById("contactForm");
+  var submitBtn = document.getElementById("contactSubmit");
+
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      // honeypot: if filled, silently drop (bot)
+      if (form.botcheck && form.botcheck.value) return;
+
+      if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
+        setFormStatus("error");
+        return;
+      }
+
       var name = form.name.value.trim();
       var email = form.email.value.trim();
+      var phone = form.phone.value.trim();
       var project = form.project.value;
       var message = form.message.value.trim();
 
-      var subject = "Nouveau projet — " + project + (name ? " (" + name + ")" : "");
-      var bodyLines = [
-        "Nom: " + name,
-        "Email: " + email,
-        "Type de projet: " + project,
-        "",
-        message
-      ];
+      var payload = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: "Nouveau projet — " + project + (name ? " (" + name + ")" : ""),
+        from_name: "Site The Hive",
+        name: name,
+        email: email,
+        phone: phone || "Non renseigné",
+        project_type: project,
+        message: message
+      };
 
-      var mailto =
-        "mailto:aminechbihi6@gmail.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(bodyLines.join("\n"));
+      if (submitBtn) submitBtn.disabled = true;
+      setFormStatus("sending");
 
-      window.location.href = mailto;
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            setFormStatus("success");
+            form.reset();
+          } else {
+            setFormStatus("error");
+          }
+        })
+        .catch(function () {
+          setFormStatus("error");
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 
@@ -318,4 +385,5 @@
      Init
   ========================================================== */
   applyLanguage(currentLang);
+  setFormStatus("idle");
 })();
